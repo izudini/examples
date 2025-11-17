@@ -21,12 +21,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Heartbeat.cpp">
+    <ClCompile Include="NetworkComm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Heartbeat.h">
+    <ClInclude Include="NetworkComm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -22,7 +22,7 @@
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{A7B8E4D2-1C3F-4E5A-9B7D-8F6A2C4E5D3B}</ProjectGuid>
-    <RootNamespace>HeartbeatSimulator</RootNamespace>
+    <RootNamespace>Simulator</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
   </PropertyGroup>
@@ -152,11 +152,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Heartbeat.cpp" />
+    <ClCompile Include="NetworkComm.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Heartbeat.h" />
+    <ClInclude Include="NetworkComm.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CMakeLists.txt" />

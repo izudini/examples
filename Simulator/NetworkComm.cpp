@@ -1,4 +1,4 @@
-#include "Heartbeat.h"
+#include "NetworkComm.h"
 #include <iostream>
 #include <sstream>
 #include <cstring>
@@ -18,10 +18,9 @@
     #include <unistd.h>
     #include <ifaddrs.h>
     #include <net/if.h>
-    #include <sys/sysinfo.h>
 #endif
 
-Heartbeat::Heartbeat(const std::string& multicastAddr, int port, int intervalMs)
+NetworkComm::NetworkComm(const std::string& multicastAddr, int port, int intervalMs)
     : multicastAddress_(multicastAddr)
     , port_(port)
     , intervalMs_(intervalMs)
@@ -37,25 +36,25 @@ Heartbeat::Heartbeat(const std::string& multicastAddr, int port, int intervalMs)
 #endif
 }
 
-Heartbeat::~Heartbeat() {
+NetworkComm::~NetworkComm() {
     stop();
 #ifdef _WIN32
     WSACleanup();
 #endif
 }
 
-void Heartbeat::start() {
+void NetworkComm::start() {
     if (running_) {
         std::cout << "Heartbeat already running" << std::endl;
         return;
     }
 
     running_ = true;
-    heartbeatThread_ = std::thread(&Heartbeat::heartbeatLoop, this);
+    heartbeatThread_ = std::thread(&NetworkComm::heartbeatLoop, this);
     std::cout << "Heartbeat started" << std::endl;
 }
 
-void Heartbeat::stop() {
+void NetworkComm::stop() {
     if (!running_) {
         return;
     }
@@ -80,11 +79,11 @@ void Heartbeat::stop() {
     std::cout << "Heartbeat stopped" << std::endl;
 }
 
-bool Heartbeat::isRunning() const {
+bool NetworkComm::isRunning() const {
     return running_;
 }
 
-void Heartbeat::heartbeatLoop() {
+void NetworkComm::heartbeatLoop() {
     // Create UDP socket
 #ifdef _WIN32
     SOCKET sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
@@ -155,7 +154,7 @@ void Heartbeat::heartbeatLoop() {
     }
 }
 
-std::string Heartbeat::getLocalIPAddress() {
+std::string NetworkComm::getLocalIPAddress() {
 #ifdef _WIN32
     // Windows implementation
     char hostName[256];
@@ -224,16 +223,9 @@ std::string Heartbeat::getLocalIPAddress() {
 #endif
 }
 
-long long Heartbeat::getUptimeSeconds() {
-#ifdef _WIN32
-    // Windows: Use GetTickCount64 for milliseconds since boot
-    return static_cast<long long>(GetTickCount64() / 1000);
-#else
-    // Linux: Use sysinfo
-    struct sysinfo info;
-    if (sysinfo(&info) == 0) {
-        return static_cast<long long>(info.uptime);
-    }
-    return 0;
-#endif
+long long NetworkComm::getUptimeSeconds() {
+    // Calculate application uptime using the start time
+    auto now = std::chrono::steady_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - startTime_);
+    return static_cast<long long>(duration.count());
 }

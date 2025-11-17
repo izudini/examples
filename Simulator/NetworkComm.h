@@ -1,15 +1,15 @@
-#ifndef HEARTBEAT_H
-#define HEARTBEAT_H
+#ifndef NETWORKCOMM_H
+#define NETWORKCOMM_H
 
 #include <string>
 #include <thread>
 #include <atomic>
 #include <chrono>
 
-class Heartbeat {
+class NetworkComm {
 public:
-    Heartbeat(const std::string& multicastAddr = "224.0.0.0", int port = 10000, int intervalMs = 1000);
-    ~Heartbeat();
+    NetworkComm(const std::string& multicastAddr = "224.0.0.0", int port = 10000, int intervalMs = 1000);
+    ~NetworkComm();
 
     // Start the heartbeat thread
     void start();
@@ -27,7 +27,7 @@ private:
     // Get the local IP address
     std::string getLocalIPAddress();
 
-    // Get system uptime in seconds
+    // Get application uptime in seconds
     long long getUptimeSeconds();
 
     // Send a UDP multicast message
@@ -49,4 +49,4 @@ private:
 #endif
 };
 
-#endif // HEARTBEAT_H
+#endif // NETWORKCOMM_H

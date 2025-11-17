@@ -1,11 +1,11 @@
-# Heartbeat Simulator
+# Simulator
 
-A C++ application that sends UDP multicast heartbeat messages containing the machine's IP address and uptime.
+A C++ application that sends UDP multicast heartbeat messages containing the machine's IP address and application uptime.
 
 ## Features
 
 - Sends UDP multicast messages to `224.0.0.0:10000`
-- Message format: `<IP_ADDRESS> <UPTIME_SECONDS>`
+- Message format: `<IP_ADDRESS> <APPLICATION_UPTIME_SECONDS>`
 - Cross-platform support (Windows and Linux)
 - Runs in a separate thread
 - Configurable heartbeat interval (default: 1 second)
@@ -16,6 +16,7 @@ A C++ application that sends UDP multicast heartbeat messages containing the mac
 
 - CMake 3.10 or higher
 - C++11 compatible compiler (GCC, Clang, MSVC)
+- Visual Studio 2019/2022 (for Windows Visual Studio builds)
 
 ### Build Instructions
 
@@ -39,14 +40,26 @@ make
 
 ## Running
 
-After building, the executable will be located in `build/bin/`:
+### CMake Build
+After building with CMake, the executable will be located in `build/bin/`:
 
 ```bash
 # Windows
-.\build\bin\Release\heartbeat_simulator.exe
+.\build\bin\Release\simulator.exe
 
 # Linux
-./build/bin/heartbeat_simulator
+./build/bin/simulator
+```
+
+### Visual Studio Build
+After building in Visual Studio, the executable will be located in `bin/[Platform]/[Configuration]/`:
+
+```bash
+# Example: 64-bit Debug build
+.\bin\x64\Debug\Simulator.exe
+
+# Example: 64-bit Release build
+.\bin\x64\Release\Simulator.exe
 ```
 
 ## Testing Multicast Reception
@@ -75,26 +88,28 @@ while True:
 
 ## Code Structure
 
-- `Heartbeat.h` - Heartbeat class definition
-- `Heartbeat.cpp` - Implementation of the Heartbeat class
+- `NetworkComm.h` - NetworkComm class definition
+- `NetworkComm.cpp` - Implementation of the NetworkComm class
 - `main.cpp` - Application entry point
 - `CMakeLists.txt` - CMake build configuration
+- `Simulator.sln` - Visual Studio solution file
+- `Simulator.vcxproj` - Visual Studio project file
 
 ## Usage in Code
 
 ```cpp
-#include "Heartbeat.h"
+#include "NetworkComm.h"
 
-// Create heartbeat instance (multicast address, port, interval in ms)
-Heartbeat heartbeat("224.0.0.0", 10000, 1000);
+// Create network communication instance (multicast address, port, interval in ms)
+NetworkComm networkComm("224.0.0.0", 10000, 1000);
 
 // Start sending heartbeats
-heartbeat.start();
+networkComm.start();
 
 // ... your application logic ...
 
 // Stop sending heartbeats
-heartbeat.stop();
+networkComm.stop();
 ```
 
 ## Stopping the Application
