@@ -5,12 +5,44 @@ project(Simulator)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Find ZeroMQ
+find_package(ZeroMQ QUIET)
+if(NOT ZeroMQ_FOUND)
+    find_package(PkgConfig QUIET)
+    if(PkgConfig_FOUND)
+        pkg_check_modules(ZeroMQ QUIET libzmq)
+    endif()
+endif()
+
+# Find cppzmq (C++ binding for ZeroMQ)
+find_package(cppzmq QUIET)
+
 # Add executable
 add_executable(simulator
     main.cpp
     NetworkComm.cpp
     NetworkComm.h
+    CommandListener.cpp
+    CommandListener.h
 )
+
+# Link ZeroMQ libraries
+if(ZeroMQ_FOUND)
+    if(TARGET libzmq OR TARGET libzmq-static)
+        target_link_libraries(simulator libzmq)
+    elseif(ZeroMQ_LIBRARIES)
+        target_include_directories(simulator PRIVATE ${ZeroMQ_INCLUDE_DIRS})
+        target_link_libraries(simulator ${ZeroMQ_LIBRARIES})
+    endif()
+    message(STATUS "ZeroMQ found and linked")
+else()
+    message(WARNING "ZeroMQ not found. Please install ZeroMQ and cppzmq to build CommandListener support.")
+endif()
+
+if(cppzmq_FOUND)
+    target_link_libraries(simulator cppzmq)
+    message(STATUS "cppzmq found and linked")
+endif()
 
 # Platform-specific libraries
 if(WIN32)

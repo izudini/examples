@@ -3,7 +3,8 @@
     "allow": [
       "Bash(mkdir:*)",
       "Bash(dir:*)",
-      "Bash(ren:*)"
+      "Bash(ren:*)",
+      "Bash(del CommandListener.h CommandListener.cpp Controller.h Controller.cpp)"
     ],
     "deny": [],
     "ask": []

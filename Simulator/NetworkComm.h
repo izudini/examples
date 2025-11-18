@@ -8,7 +8,7 @@
 
 class NetworkComm {
 public:
-    NetworkComm(const std::string& multicastAddr = "224.0.0.0", int port = 10000, int intervalMs = 1000);
+    NetworkComm(const std::string& multicastAddr = "224.0.0.0", int port = 10000, int commandPort = 52000, int intervalMs = 1000);
     ~NetworkComm();
 
     // Start the heartbeat thread
@@ -35,6 +35,7 @@ private:
 
     std::string multicastAddress_;
     int port_;
+    int commandPort_;
     int intervalMs_;
     std::atomic<bool> running_;
     std::thread heartbeatThread_;

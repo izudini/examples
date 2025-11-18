@@ -24,9 +24,15 @@
     <ClCompile Include="NetworkComm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CommandListener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NetworkComm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

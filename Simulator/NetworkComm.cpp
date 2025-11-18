@@ -20,9 +20,10 @@
     #include <net/if.h>
 #endif
 
-NetworkComm::NetworkComm(const std::string& multicastAddr, int port, int intervalMs)
+NetworkComm::NetworkComm(const std::string& multicastAddr, int port, int commandPort, int intervalMs)
     : multicastAddress_(multicastAddr)
     , port_(port)
+    , commandPort_(commandPort)
     , intervalMs_(intervalMs)
     , running_(false)
     , startTime_(std::chrono::steady_clock::now())
@@ -125,9 +126,9 @@ void NetworkComm::heartbeatLoop() {
         std::string localIP = getLocalIPAddress();
         long long uptime = getUptimeSeconds();
 
-        // Create message: "IP UPTIME"
+        // Create message: "IP COMMANDPORT UPTIME"
         std::ostringstream oss;
-        oss << localIP << " " << uptime;
+        oss << localIP << " " << commandPort_ << " " << uptime;
         std::string message = oss.str();
 
         // Send multicast message
