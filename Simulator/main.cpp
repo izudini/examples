@@ -1,4 +1,5 @@
 #include "NetworkComm.h"
+#include "Controller.h"
 #include <iostream>
 #include <csignal>
 #include <atomic>
@@ -33,10 +34,20 @@ int main(int argc, char* argv[]) {
         NetworkComm networkComm("224.0.0.0", MULTICAST_PORT, 0, 1000);
         std::cout << "NetworkComm created successfully" << std::endl;
 
+        // Create controller instance
+        std::cout << "Creating Controller..." << std::endl;
+        Controller controller;
+        std::cout << "Controller created successfully" << std::endl;
+
         // Start network communication
         std::cout << "Starting NetworkComm..." << std::endl;
         networkComm.start();
         std::cout << "NetworkComm started successfully!" << std::endl << std::endl;
+
+        // Start controller
+        std::cout << "Starting Controller..." << std::endl;
+        controller.start();
+        std::cout << "Controller started successfully!" << std::endl << std::endl;
 
         // Keep the main thread alive until interrupted
         while (keepRunning) {
@@ -46,6 +57,10 @@ int main(int argc, char* argv[]) {
         // Stop network communication
         std::cout << "\nStopping NetworkComm..." << std::endl;
         networkComm.stop();
+
+        // Stop controller
+        std::cout << "Stopping Controller..." << std::endl;
+        controller.stop();
 
         std::cout << "\nApplication terminated successfully" << std::endl;
         return 0;

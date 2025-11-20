@@ -152,12 +152,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CommandListener.cpp" />
+    <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Globals.cpp" />
     <ClCompile Include="NetworkComm.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CommandListener.h" />
+    <ClInclude Include="Controller.h" />
+    <ClInclude Include="Globals.h" />
     <ClInclude Include="NetworkComm.h" />
   </ItemGroup>
   <ItemGroup>

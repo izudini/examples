@@ -22,8 +22,10 @@ add_executable(simulator
     main.cpp
     NetworkComm.cpp
     NetworkComm.h
-    CommandListener.cpp
-    CommandListener.h
+    Globals.cpp
+    Globals.h
+    Controller.cpp
+    Controller.h
 )
 
 # Link ZeroMQ libraries

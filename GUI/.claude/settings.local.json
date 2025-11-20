@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(del HeartbeatReceiver.csproj)",
-      "Bash(del:*)"
+      "Bash(del:*)",
+      "Bash(dotnet build:*)",
+      "Bash(/mnt/c/Windows/Microsoft.NET/SDK/*/dotnet.exe)",
+      "Bash(build)"
     ],
     "deny": [],
     "ask": []

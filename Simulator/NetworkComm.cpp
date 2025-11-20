@@ -146,8 +146,6 @@ void NetworkComm::heartbeatLoop() {
 #else
             std::cerr << "Failed to send multicast message" << std::endl;
 #endif
-        } else {
-            std::cout << "Sent: " << message << std::endl;
         }
 
         // Sleep for the specified interval

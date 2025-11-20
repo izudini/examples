@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmd.exe /c generate_proto.bat:*)",
+      "Bash(cmd.exe /c \"where protoc\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
