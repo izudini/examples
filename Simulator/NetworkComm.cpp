@@ -126,17 +126,26 @@ void NetworkComm::heartbeatLoop() {
         std::string localIP = getLocalIPAddress();
         long long uptime = getUptimeSeconds();
 
-        // Create message: "IP COMMANDPORT UPTIME"
-        std::ostringstream oss;
-        oss << localIP << " " << commandPort_ << " " << uptime;
-        std::string message = oss.str();
+        // Create protobuf message
+        GUIApp::Comm::SimulatorStatus status;
+        status.set_uptimeseconds(static_cast<int>(uptime));
+        status.set_ipaddress(localIP);
+        status.set_port(commandPort_);
+
+        // Serialize protobuf message to string
+        std::string serialized;
+        if (!status.SerializeToString(&serialized)) {
+            std::cerr << "Failed to serialize protobuf message" << std::endl;
+            std::this_thread::sleep_for(std::chrono::milliseconds(intervalMs_));
+            continue;
+        }
 
         // Send multicast message
 #ifdef _WIN32
-        int bytesSent = sendto(sock, message.c_str(), static_cast<int>(message.length()), 0,
+        int bytesSent = sendto(sock, serialized.c_str(), static_cast<int>(serialized.length()), 0,
                                (struct sockaddr*)&multicastAddr, sizeof(multicastAddr));
 #else
-        ssize_t bytesSent = sendto(sock, message.c_str(), message.length(), 0,
+        ssize_t bytesSent = sendto(sock, serialized.c_str(), serialized.length(), 0,
                                    (struct sockaddr*)&multicastAddr, sizeof(multicastAddr));
 #endif
 

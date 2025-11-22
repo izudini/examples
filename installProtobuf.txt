@@ -1,0 +1,11 @@
+  1. Go to the https://github.com/protocolbuffers/protobuf/releases
+  2. Download the latest protoc-<version>-win64.zip (or win32 for 32-bit)
+  3. Extract the ZIP file to a location like C:\protoc
+  4. Add C:\protoc\bin to your system PATH:
+    - Right-click "This PC" → Properties → Advanced system settings
+    - Click "Environment Variables"
+    - Under "System variables", find and select "Path"
+    - Click "Edit" → "New" → Add C:\protoc\bin
+    - Click OK on all dialogs
+  5. Open a new terminal and verify:
+  protoc --version

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package GUIApp.Comm;
+
+enum BIT_ResponseType {
+    BIT_RESPONSE_PASS = 0;
+    BIT_RESPONSE_FAIL = 1;
+}
+
+message ConfigureBitResults
+{
+    BIT_ResponseType BitResponse = 1;
+	int32 DurationIfSetToFail_msec = 2;
+}

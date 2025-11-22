@@ -5,6 +5,7 @@
 #include <thread>
 #include <atomic>
 #include <chrono>
+#include "comm/SimulatorStatus.pb.h"
 
 class NetworkComm {
 public:

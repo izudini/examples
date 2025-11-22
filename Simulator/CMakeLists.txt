@@ -5,6 +5,11 @@ project(Simulator)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Find Protobuf
+find_package(Protobuf REQUIRED)
+include_directories(${Protobuf_INCLUDE_DIRS})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+
 # Find ZeroMQ
 find_package(ZeroMQ QUIET)
 if(NOT ZeroMQ_FOUND)
@@ -26,7 +31,12 @@ add_executable(simulator
     Globals.h
     Controller.cpp
     Controller.h
+    comm/SimulatorStatus.pb.cc
+    comm/SimulatorStatus.pb.h
 )
+
+# Link Protobuf libraries
+target_link_libraries(simulator ${Protobuf_LIBRARIES})
 
 # Link ZeroMQ libraries
 if(ZeroMQ_FOUND)

@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(cmd.exe /c generate_proto.bat:*)",
-      "Bash(cmd.exe /c \"where protoc\")"
+      "Bash(cmd.exe /c \"where protoc\")",
+      "Bash(cmake:*)",
+      "Bash(cmd.exe /c \"where msbuild\")",
+      "Bash(cmd.exe /c \"where protoc.exe\")"
     ],
     "deny": [],
     "ask": []

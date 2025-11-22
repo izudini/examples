@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\Comm\SimulatorStatus.proto" ProtoRoot="..\Comm" OutputDir="comm" CompileOutputs="false" GrpcServices="None" />
+    <Protobuf Include="..\proto\SimulatorStatus.proto" ProtoRoot="..\proto" OutputDir="comm" CompileOutputs="false" GrpcServices="None" />
   </ItemGroup>
 
 </Project>
