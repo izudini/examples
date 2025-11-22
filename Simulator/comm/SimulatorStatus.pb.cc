@@ -80,6 +80,35 @@ struct SimulatorStatusDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SimulatorStatusDefaultTypeInternal _SimulatorStatus_default_instance_;
+
+inline constexpr STAMP_Status::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        ipaddress_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        uptimeseconds_{0},
+        port_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR STAMP_Status::STAMP_Status(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(STAMP_Status_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct STAMP_StatusDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR STAMP_StatusDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~STAMP_StatusDefaultTypeInternal() {}
+  union {
+    STAMP_Status _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 STAMP_StatusDefaultTypeInternal _STAMP_Status_default_instance_;
 }  // namespace Comm
 }  // namespace GUIApp
 static const ::_pb::EnumDescriptor* PROTOBUF_NONNULL
@@ -99,6 +128,15 @@ const ::uint32_t
         0,
         2,
         0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::GUIApp::Comm::STAMP_Status, _impl_._has_bits_),
+        6, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::GUIApp::Comm::STAMP_Status, _impl_.uptimeseconds_),
+        PROTOBUF_FIELD_OFFSET(::GUIApp::Comm::STAMP_Status, _impl_.ipaddress_),
+        PROTOBUF_FIELD_OFFSET(::GUIApp::Comm::STAMP_Status, _impl_.port_),
+        1,
+        0,
+        2,
+        0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::GUIApp::Comm::SubsystemStatus, _impl_._has_bits_),
         4, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::GUIApp::Comm::SubsystemStatus, _impl_.status_),
@@ -108,32 +146,36 @@ const ::uint32_t
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, sizeof(::GUIApp::Comm::SimulatorStatus)},
-        {9, sizeof(::GUIApp::Comm::SubsystemStatus)},
+        {9, sizeof(::GUIApp::Comm::STAMP_Status)},
+        {18, sizeof(::GUIApp::Comm::SubsystemStatus)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::GUIApp::Comm::_SimulatorStatus_default_instance_._instance,
+    &::GUIApp::Comm::_STAMP_Status_default_instance_._instance,
     &::GUIApp::Comm::_SubsystemStatus_default_instance_._instance,
 };
 const char descriptor_table_protodef_SimulatorStatus_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\025SimulatorStatus.proto\022\013GUIApp.Comm\"I\n\017"
     "SimulatorStatus\022\025\n\ruptimeSeconds\030\001 \001(\005\022\021"
-    "\n\tipAddress\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\"<\n\017Subsy"
-    "stemStatus\022)\n\006status\030\001 \001(\0162\031.GUIApp.Comm"
-    ".SystemStatus*1\n\014SystemStatus\022\020\n\014Initial"
-    "izing\020\000\022\017\n\013Operational\020\001b\006proto3"
+    "\n\tipAddress\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\"F\n\014STAMP"
+    "_Status\022\025\n\ruptimeSeconds\030\001 \001(\005\022\021\n\tipAddr"
+    "ess\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\"<\n\017SubsystemStat"
+    "us\022)\n\006status\030\001 \001(\0162\031.GUIApp.Comm.SystemS"
+    "tatus*1\n\014SystemStatus\022\020\n\014Initializing\020\000\022"
+    "\017\n\013Operational\020\001b\006proto3"
 };
 static ::absl::once_flag descriptor_table_SimulatorStatus_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_SimulatorStatus_2eproto = {
     false,
     false,
-    232,
+    304,
     descriptor_table_protodef_SimulatorStatus_2eproto,
     "SimulatorStatus.proto",
     &descriptor_table_SimulatorStatus_2eproto_once,
     nullptr,
     0,
-    2,
+    3,
     schemas,
     file_default_instances,
     TableStruct_SimulatorStatus_2eproto::offsets,
@@ -503,6 +545,363 @@ void SimulatorStatus::InternalSwap(SimulatorStatus* PROTOBUF_RESTRICT PROTOBUF_N
 }
 
 ::google::protobuf::Metadata SimulatorStatus::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class STAMP_Status::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<STAMP_Status>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(STAMP_Status, _impl_._has_bits_);
+};
+
+STAMP_Status::STAMP_Status(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, STAMP_Status_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:GUIApp.Comm.STAMP_Status)
+}
+PROTOBUF_NDEBUG_INLINE STAMP_Status::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::GUIApp::Comm::STAMP_Status& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        ipaddress_(arena, from.ipaddress_) {}
+
+STAMP_Status::STAMP_Status(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const STAMP_Status& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, STAMP_Status_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  STAMP_Status* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::memcpy(reinterpret_cast<char*>(&_impl_) +
+               offsetof(Impl_, uptimeseconds_),
+           reinterpret_cast<const char*>(&from._impl_) +
+               offsetof(Impl_, uptimeseconds_),
+           offsetof(Impl_, port_) -
+               offsetof(Impl_, uptimeseconds_) +
+               sizeof(Impl_::port_));
+
+  // @@protoc_insertion_point(copy_constructor:GUIApp.Comm.STAMP_Status)
+}
+PROTOBUF_NDEBUG_INLINE STAMP_Status::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        ipaddress_(arena) {}
+
+inline void STAMP_Status::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char*>(&_impl_) +
+               offsetof(Impl_, uptimeseconds_),
+           0,
+           offsetof(Impl_, port_) -
+               offsetof(Impl_, uptimeseconds_) +
+               sizeof(Impl_::port_));
+}
+STAMP_Status::~STAMP_Status() {
+  // @@protoc_insertion_point(destructor:GUIApp.Comm.STAMP_Status)
+  SharedDtor(*this);
+}
+inline void STAMP_Status::SharedDtor(MessageLite& self) {
+  STAMP_Status& this_ = static_cast<STAMP_Status&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.ipaddress_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL STAMP_Status::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) STAMP_Status(arena);
+}
+constexpr auto STAMP_Status::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(STAMP_Status),
+                                            alignof(STAMP_Status));
+}
+constexpr auto STAMP_Status::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_STAMP_Status_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &STAMP_Status::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<STAMP_Status>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &STAMP_Status::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<STAMP_Status>(), &STAMP_Status::ByteSizeLong,
+              &STAMP_Status::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(STAMP_Status, _impl_._cached_size_),
+          false,
+      },
+      &STAMP_Status::kDescriptorMethods,
+      &descriptor_table_SimulatorStatus_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull STAMP_Status_class_data_ =
+        STAMP_Status::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+STAMP_Status::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&STAMP_Status_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(STAMP_Status_class_data_.tc_table);
+  return STAMP_Status_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 42, 2>
+STAMP_Status::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(STAMP_Status, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    STAMP_Status_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::GUIApp::Comm::STAMP_Status>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // int32 uptimeSeconds = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(STAMP_Status, _impl_.uptimeseconds_), 1>(),
+     {8, 1, 0,
+      PROTOBUF_FIELD_OFFSET(STAMP_Status, _impl_.uptimeseconds_)}},
+    // string ipAddress = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 0, 0,
+      PROTOBUF_FIELD_OFFSET(STAMP_Status, _impl_.ipaddress_)}},
+    // int32 port = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(STAMP_Status, _impl_.port_), 2>(),
+     {24, 2, 0,
+      PROTOBUF_FIELD_OFFSET(STAMP_Status, _impl_.port_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 uptimeSeconds = 1;
+    {PROTOBUF_FIELD_OFFSET(STAMP_Status, _impl_.uptimeseconds_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
+    // string ipAddress = 2;
+    {PROTOBUF_FIELD_OFFSET(STAMP_Status, _impl_.ipaddress_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int32 port = 3;
+    {PROTOBUF_FIELD_OFFSET(STAMP_Status, _impl_.port_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+    "\30\0\11\0\0\0\0\0"
+    "GUIApp.Comm.STAMP_Status"
+    "ipAddress"
+  }},
+};
+PROTOBUF_NOINLINE void STAMP_Status::Clear() {
+// @@protoc_insertion_point(message_clear_start:GUIApp.Comm.STAMP_Status)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    _impl_.ipaddress_.ClearNonDefaultToEmpty();
+  }
+  if (BatchCheckHasBit(cached_has_bits, 0x00000006U)) {
+    ::memset(&_impl_.uptimeseconds_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.port_) -
+        reinterpret_cast<char*>(&_impl_.uptimeseconds_)) + sizeof(_impl_.port_));
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL STAMP_Status::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const STAMP_Status& this_ = static_cast<const STAMP_Status&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL STAMP_Status::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const STAMP_Status& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:GUIApp.Comm.STAMP_Status)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // int32 uptimeSeconds = 1;
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (this_._internal_uptimeseconds() != 0) {
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt32ToArrayWithField<1>(
+              stream, this_._internal_uptimeseconds(), target);
+    }
+  }
+
+  // string ipAddress = 2;
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    if (!this_._internal_ipaddress().empty()) {
+      const ::std::string& _s = this_._internal_ipaddress();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "GUIApp.Comm.STAMP_Status.ipAddress");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  // int32 port = 3;
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (this_._internal_port() != 0) {
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt32ToArrayWithField<3>(
+              stream, this_._internal_port(), target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:GUIApp.Comm.STAMP_Status)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t STAMP_Status::ByteSizeLong(const MessageLite& base) {
+  const STAMP_Status& this_ = static_cast<const STAMP_Status&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t STAMP_Status::ByteSizeLong() const {
+  const STAMP_Status& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:GUIApp.Comm.STAMP_Status)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    // string ipAddress = 2;
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!this_._internal_ipaddress().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_ipaddress());
+      }
+    }
+    // int32 uptimeSeconds = 1;
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (this_._internal_uptimeseconds() != 0) {
+        total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+            this_._internal_uptimeseconds());
+      }
+    }
+    // int32 port = 3;
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (this_._internal_port() != 0) {
+        total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+            this_._internal_port());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void STAMP_Status::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<STAMP_Status*>(&to_msg);
+  auto& from = static_cast<const STAMP_Status&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(class_specific_merge_from_start:GUIApp.Comm.STAMP_Status)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!from._internal_ipaddress().empty()) {
+        _this->_internal_set_ipaddress(from._internal_ipaddress());
+      } else {
+        if (_this->_impl_.ipaddress_.IsDefault()) {
+          _this->_internal_set_ipaddress("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (from._internal_uptimeseconds() != 0) {
+        _this->_impl_.uptimeseconds_ = from._impl_.uptimeseconds_;
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (from._internal_port() != 0) {
+        _this->_impl_.port_ = from._impl_.port_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void STAMP_Status::CopyFrom(const STAMP_Status& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:GUIApp.Comm.STAMP_Status)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void STAMP_Status::InternalSwap(STAMP_Status* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.ipaddress_, &other->_impl_.ipaddress_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(STAMP_Status, _impl_.port_)
+      + sizeof(STAMP_Status::_impl_.port_)
+      - PROTOBUF_FIELD_OFFSET(STAMP_Status, _impl_.uptimeseconds_)>(
+          reinterpret_cast<char*>(&_impl_.uptimeseconds_),
+          reinterpret_cast<char*>(&other->_impl_.uptimeseconds_));
+}
+
+::google::protobuf::Metadata STAMP_Status::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

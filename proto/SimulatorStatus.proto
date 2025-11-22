@@ -14,6 +14,12 @@ message SimulatorStatus {
     int32 port = 3;
 }
 
+message STAMP_Status {
+    int32 uptimeSeconds = 1;
+    string ipAddress = 2;
+    int32 port = 3;
+}
+
 message SubsystemStatus
 {
 	SystemStatus status = 1;
