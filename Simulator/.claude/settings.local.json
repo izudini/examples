@@ -10,7 +10,22 @@
       "Bash(cmd.exe /c \"\"\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe\"\" -version\")",
       "Bash(cmd.exe /c \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe -version\")",
       "Bash(\"/mnt/c/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/MSBuild.exe\" -version)",
-      "Bash(\"/mnt/c/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe\" -version)"
+      "Bash(\"/mnt/c/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe\" -version)",
+      "Bash(curl:*)",
+      "Bash(./nuget.exe restore:*)",
+      "Bash(./nuget.exe list:*)",
+      "Bash(./nuget.exe:*)",
+      "Bash(cmd.exe /c \"where vcpkg\")",
+      "Bash(/mnt/c/Users/izudin/Desktop/vcpkg/vcpkg/vcpkg.exe install:*)",
+      "Bash(cmd.exe /c \"protoc --version\")",
+      "Bash(/mnt/c/Users/izudin/Desktop/vcpkg/vcpkg/installed/x64-windows/tools/protobuf/protoc.exe:*)",
+      "Bash(/mnt/c/Users/izudin/Desktop/vcpkg/vcpkg/vcpkg.exe search:*)",
+      "Bash(\"/mnt/c/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/MSBuild.exe\" Simulator.sln /p:Configuration=Debug /p:Platform=x64 /v:minimal)",
+      "Bash(cmd.exe /c \"C:\\protobuf\\bin\\protoc.exe --version\")",
+      "Bash(unzip:*)",
+      "Bash(powershell.exe -Command \"Expand-Archive -Path protoc-29.5.zip -DestinationPath protoc-29.5 -Force\")",
+      "Bash(./protoc-29.5/bin/protoc.exe:*)",
+      "Bash(\"/mnt/c/Program Files/Microsoft Visual Studio/2022/Professional/MSBuild/Current/Bin/MSBuild.exe\" Simulator/Simulator.vcxproj /p:Configuration=Debug /p:Platform=x64 /v:minimal)"
     ],
     "deny": [],
     "ask": []

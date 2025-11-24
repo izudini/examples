@@ -85,6 +85,8 @@ bool NetworkComm::isRunning() const {
 }
 
 void NetworkComm::heartbeatLoop() {
+    std::cout << "[NetworkComm] Heartbeat loop starting..." << std::endl;
+
     // Create UDP socket
 #ifdef _WIN32
     SOCKET sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
@@ -104,6 +106,8 @@ void NetworkComm::heartbeatLoop() {
     socketHandle_ = sock;
 #endif
 
+    std::cout << "[NetworkComm] Socket created successfully" << std::endl;
+
     // Set socket options for multicast
     int ttl = 1; // Time to live (1 = local network only)
 #ifdef _WIN32
@@ -121,45 +125,64 @@ void NetworkComm::heartbeatLoop() {
     multicastAddr.sin_port = htons(port_);
     multicastAddr.sin_addr.s_addr = inet_addr(multicastAddress_.c_str());
 
+    std::cout << "[NetworkComm] Entering main heartbeat loop" << std::endl;
+
     while (running_) {
-        // Get local IP and uptime
-        std::string localIP = getLocalIPAddress();
-        long long uptime = getUptimeSeconds();
+        try {
+            // Get local IP and uptime
+            std::string localIP = getLocalIPAddress();
+            long long uptime = getUptimeSeconds();
 
-        // Create protobuf message
-        GUIApp::Comm::SimulatorStatus status;
-        status.set_uptimeseconds(static_cast<int>(uptime));
-        status.set_ipaddress(localIP);
-        status.set_port(commandPort_);
+            std::cout << "[NetworkComm] Creating protobuf message..." << std::endl;
 
-        // Serialize protobuf message to string
-        std::string serialized;
-        if (!status.SerializeToString(&serialized)) {
-            std::cerr << "Failed to serialize protobuf message" << std::endl;
-            std::this_thread::sleep_for(std::chrono::milliseconds(intervalMs_));
-            continue;
-        }
+            // Create protobuf message
+            GUIApp::Comm::SimulatorStatus status;
+            status.set_uptimeseconds(static_cast<int>(uptime));
+            status.set_ipaddress(localIP);
+            status.set_port(commandPort_);
 
-        // Send multicast message
+            std::cout << "[NetworkComm] Protobuf message created, serializing..." << std::endl;
+
+            // Serialize protobuf message to string
+            std::string serialized;
+            if (!status.SerializeToString(&serialized)) {
+                std::cerr << "Failed to serialize protobuf message" << std::endl;
+                std::this_thread::sleep_for(std::chrono::milliseconds(intervalMs_));
+                continue;
+            }
+
+            std::cout << "[NetworkComm] Message serialized successfully (" << serialized.size() << " bytes)" << std::endl;
+
+            // Send multicast message
 #ifdef _WIN32
-        int bytesSent = sendto(sock, serialized.c_str(), static_cast<int>(serialized.length()), 0,
-                               (struct sockaddr*)&multicastAddr, sizeof(multicastAddr));
-#else
-        ssize_t bytesSent = sendto(sock, serialized.c_str(), serialized.length(), 0,
+            int bytesSent = sendto(sock, serialized.c_str(), static_cast<int>(serialized.length()), 0,
                                    (struct sockaddr*)&multicastAddr, sizeof(multicastAddr));
+#else
+            ssize_t bytesSent = sendto(sock, serialized.c_str(), serialized.length(), 0,
+                                       (struct sockaddr*)&multicastAddr, sizeof(multicastAddr));
 #endif
 
-        if (bytesSent < 0) {
+            if (bytesSent < 0) {
 #ifdef _WIN32
-            std::cerr << "Failed to send multicast message: " << WSAGetLastError() << std::endl;
+                std::cerr << "Failed to send multicast message: " << WSAGetLastError() << std::endl;
 #else
-            std::cerr << "Failed to send multicast message" << std::endl;
+                std::cerr << "Failed to send multicast message" << std::endl;
 #endif
+            } else {
+                std::cout << "[NetworkComm] Sent " << bytesSent << " bytes" << std::endl;
+            }
+
+        } catch (const std::exception& e) {
+            std::cerr << "[NetworkComm] Exception in heartbeat loop: " << e.what() << std::endl;
+        } catch (...) {
+            std::cerr << "[NetworkComm] Unknown exception in heartbeat loop" << std::endl;
         }
 
         // Sleep for the specified interval
         std::this_thread::sleep_for(std::chrono::milliseconds(intervalMs_));
     }
+
+    std::cout << "[NetworkComm] Heartbeat loop exiting" << std::endl;
 }
 
 std::string NetworkComm::getLocalIPAddress() {

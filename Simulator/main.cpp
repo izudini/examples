@@ -5,6 +5,7 @@
 #include <atomic>
 #include <thread>
 #include <chrono>
+#include <google/protobuf/stubs/common.h>
 
 std::atomic<bool> keepRunning(true);
 
@@ -15,6 +16,9 @@ void signalHandler(int signal) {
 
 int main(int argc, char* argv[]) {
     try {
+        // Verify and initialize Protocol Buffers library
+        GOOGLE_PROTOBUF_VERIFY_VERSION;
+
         // Register signal handlers for graceful shutdown
         signal(SIGINT, signalHandler);
         signal(SIGTERM, signalHandler);
@@ -63,6 +67,10 @@ int main(int argc, char* argv[]) {
         controller.stop();
 
         std::cout << "\nApplication terminated successfully" << std::endl;
+
+        // Cleanup Protocol Buffers library
+        google::protobuf::ShutdownProtobufLibrary();
+
         return 0;
 
     } catch (const std::system_error& e) {
