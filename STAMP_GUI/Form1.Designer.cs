@@ -29,8 +29,16 @@
             radioSTAMP_Status_Normal = new RadioButton();
             radioSTAMP_Status_init = new RadioButton();
             labelSTAMP = new Label();
+            groupAIECS = new GroupBox();
+            label1 = new Label();
+            buttonStopAIECS = new Button();
+            buttonStartAIECS = new Button();
+            buttonConnectAIECS = new Button();
+            buttonAIECS_RequestBIT = new Button();
+            buttonSendZeroizeRequest = new Button();
             groupSTAMP.SuspendLayout();
             groupSTAMP_Status.SuspendLayout();
+            groupAIECS.SuspendLayout();
             SuspendLayout();
             // 
             // buttonConnectToSTAMP
@@ -164,17 +172,90 @@
             labelSTAMP.Text = "Disconnected";
             labelSTAMP.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // groupAIECS
+            // 
+            groupAIECS.Controls.Add(buttonSendZeroizeRequest);
+            groupAIECS.Controls.Add(buttonAIECS_RequestBIT);
+            groupAIECS.Controls.Add(buttonStopAIECS);
+            groupAIECS.Controls.Add(buttonStartAIECS);
+            groupAIECS.Controls.Add(buttonConnectAIECS);
+            groupAIECS.Controls.Add(label1);
+            groupAIECS.Location = new Point(314, 22);
+            groupAIECS.Name = "groupAIECS";
+            groupAIECS.Size = new Size(288, 548);
+            groupAIECS.TabIndex = 2;
+            groupAIECS.TabStop = false;
+            groupAIECS.Text = "AIECS";
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label1.BackColor = Color.Gray;
+            label1.Location = new Point(6, 529);
+            label1.Name = "label1";
+            label1.Size = new Size(276, 16);
+            label1.TabIndex = 2;
+            label1.Text = "Disconnected";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // buttonStopAIECS
+            // 
+            buttonStopAIECS.Location = new Point(153, 58);
+            buttonStopAIECS.Name = "buttonStopAIECS";
+            buttonStopAIECS.Size = new Size(75, 48);
+            buttonStopAIECS.TabIndex = 8;
+            buttonStopAIECS.Text = "Stop AIECS Sim";
+            buttonStopAIECS.UseVisualStyleBackColor = true;
+            // 
+            // buttonStartAIECS
+            // 
+            buttonStartAIECS.Location = new Point(41, 58);
+            buttonStartAIECS.Name = "buttonStartAIECS";
+            buttonStartAIECS.Size = new Size(75, 48);
+            buttonStartAIECS.TabIndex = 7;
+            buttonStartAIECS.Text = "Start AIECS Sim";
+            buttonStartAIECS.UseVisualStyleBackColor = true;
+            // 
+            // buttonConnectAIECS
+            // 
+            buttonConnectAIECS.Location = new Point(63, 22);
+            buttonConnectAIECS.Name = "buttonConnectAIECS";
+            buttonConnectAIECS.Size = new Size(150, 30);
+            buttonConnectAIECS.TabIndex = 6;
+            buttonConnectAIECS.Text = "Connect";
+            buttonConnectAIECS.UseVisualStyleBackColor = true;
+            // 
+            // buttonAIECS_RequestBIT
+            // 
+            buttonAIECS_RequestBIT.Location = new Point(19, 142);
+            buttonAIECS_RequestBIT.Name = "buttonAIECS_RequestBIT";
+            buttonAIECS_RequestBIT.Size = new Size(242, 32);
+            buttonAIECS_RequestBIT.TabIndex = 5;
+            buttonAIECS_RequestBIT.Text = "Send BIT Request";
+            buttonAIECS_RequestBIT.UseVisualStyleBackColor = true;
+            // 
+            // buttonSendZeroizeRequest
+            // 
+            buttonSendZeroizeRequest.Location = new Point(19, 180);
+            buttonSendZeroizeRequest.Name = "buttonSendZeroizeRequest";
+            buttonSendZeroizeRequest.Size = new Size(242, 32);
+            buttonSendZeroizeRequest.TabIndex = 9;
+            buttonSendZeroizeRequest.Text = "Send ZEROIZE Request";
+            buttonSendZeroizeRequest.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 604);
+            Controls.Add(groupAIECS);
             Controls.Add(groupSTAMP);
             Name = "Form1";
             Text = "STAMP GUI";
             groupSTAMP.ResumeLayout(false);
             groupSTAMP_Status.ResumeLayout(false);
             groupSTAMP_Status.PerformLayout();
+            groupAIECS.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -192,5 +273,12 @@
         private GroupBox groupSTAMP_BIT;
         private Button buttonStopSTAMP;
         private Button buttonStartSTAMP;
+        private GroupBox groupAIECS;
+        private Label label1;
+        private Button buttonSendZeroizeRequest;
+        private Button buttonAIECS_RequestBIT;
+        private Button buttonStopAIECS;
+        private Button buttonStartAIECS;
+        private Button buttonConnectAIECS;
     }
 }

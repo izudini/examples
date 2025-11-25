@@ -37,7 +37,7 @@ namespace STAMP_GUI
                     {
                         zmqSocket.Dispose();
                         zmqSocket = null;
-                    }
+                    } 
                 }
             });
 
