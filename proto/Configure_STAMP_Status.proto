@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package GUIApp.Comm;
+
+enum SystemStatus
+{
+    Initializing = 0;
+    Operational = 1;
+}
+
+message Configure_STAMP_Status
+{
+    SystemStatus status = 1;
+}
+

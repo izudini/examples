@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package GUIApp.Comm;
+
+enum Command
+{
+    Start = 0;
+    Stop = 1;
+}
+
+message STAMP_Control {
+    Command STAMP_Command = 1;
+}
+

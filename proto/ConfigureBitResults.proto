@@ -2,13 +2,32 @@ syntax = "proto3";
 
 package GUIApp.Comm;
 
-enum BIT_ResponseType {
+enum BIT_ResponseType
+{
     BIT_RESPONSE_PASS = 0;
     BIT_RESPONSE_FAIL = 1;
+}
+
+enum ComponentStatus
+{
+    OFF = 0;
+    ComponentInitializing = 1;
+    ComponentOperational = 2;
+    Degraded = 3;
+    Failed = 4;
 }
 
 message ConfigureBitResults
 {
     BIT_ResponseType BitResponse = 1;
-	int32 DurationIfSetToFail_msec = 2;
+	int32 DurationOfResponse_msec = 2;
+
+    ComponentStatus Sensor_1_Status = 3;
+    ComponentStatus Sensor_2_Status = 4;
+    ComponentStatus Sensor_3_Status = 5;
+    ComponentStatus Sensor_4_Status = 6;
+    ComponentStatus Sensor_5_Status = 7;
+    ComponentStatus Sensor_6_Status = 8;
+
+    ComponentStatus Heimdall_Status = 9;    
 }

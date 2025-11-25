@@ -28,7 +28,7 @@ echo.
 
 REM Set paths
 set PROTO_DIR=proto
-set CSHARP_OUTPUT_DIR=GUI\Comm
+set CSHARP_OUTPUT_DIR=STAMP_GUI\Comm
 set CPP_OUTPUT_DIR=Simulator\comm
 
 REM Check if proto directory exists
