@@ -74,8 +74,10 @@ internal::EnumTraitsT<::GUIApp::Comm::SystemStatus_internal_data_>
 namespace GUIApp {
 namespace Comm {
 enum SystemStatus : int {
-  Initializing = 0,
-  Operational = 1,
+  Status_Initializing = 0,
+  Status_Normal = 1,
+  Status_Degraded = 2,
+  Status_Inoprable = 3,
   SystemStatus_INT_MIN_SENTINEL_DO_NOT_USE_ =
       ::std::numeric_limits<::int32_t>::min(),
   SystemStatus_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -86,11 +88,11 @@ extern const uint32_t SystemStatus_internal_data_[];
 inline constexpr SystemStatus SystemStatus_MIN =
     static_cast<SystemStatus>(0);
 inline constexpr SystemStatus SystemStatus_MAX =
-    static_cast<SystemStatus>(1);
+    static_cast<SystemStatus>(3);
 inline bool SystemStatus_IsValid(int value) {
-  return 0 <= value && value <= 1;
+  return 0 <= value && value <= 3;
 }
-inline constexpr int SystemStatus_ARRAYSIZE = 1 + 1;
+inline constexpr int SystemStatus_ARRAYSIZE = 3 + 1;
 const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL SystemStatus_descriptor();
 template <typename T>
 const ::std::string& SystemStatus_Name(T value) {
@@ -101,7 +103,7 @@ const ::std::string& SystemStatus_Name(T value) {
 }
 template <>
 inline const ::std::string& SystemStatus_Name(SystemStatus value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<SystemStatus_descriptor, 0, 1>(
+  return ::google::protobuf::internal::NameOfDenseEnum<SystemStatus_descriptor, 0, 3>(
       static_cast<int>(value));
 }
 inline bool SystemStatus_Parse(

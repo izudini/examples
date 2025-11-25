@@ -4,8 +4,10 @@ package GUIApp.Comm;
 
 enum SystemStatus
 {
-    Initializing = 0;
-    Operational = 1;
+    Status_Initializing = 0;
+    Status_Normal = 1;
+    Status_Degraded = 2;
+    Status_Inoprable = 3;
 }
 
 message Configure_STAMP_Status

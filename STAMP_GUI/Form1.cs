@@ -1,17 +1,17 @@
-using NetMQ;
-using NetMQ.Sockets;
-
 namespace STAMP_GUI
 {
     public partial class Form1 : Form
     {
-        private DealerSocket? zmqSocket;
-        private const string STAMP_IP = "192.168.1.10";
-        private const int STAMP_PORT = 40000;
+        private STAMP_Communicator stampCommunicator;
+
+
 
         public Form1()
         {
             InitializeComponent();
+            stampCommunicator = new STAMP_Communicator();
+
+            ConnectedToStamp(false);
         }
 
         private async void buttonConnectToSTAMP_Click(object? sender, EventArgs e)
@@ -21,38 +21,7 @@ namespace STAMP_GUI
             try
             {
                 buttonConnectToSTAMP.Enabled = false;
-                buttonConnectToSTAMP.Text = "Connecting...";
-
-                await Task.Run(() =>
-                {
-                    try
-                    {
-                        // Create ZeroMQ socket
-                        zmqSocket = new DealerSocket();
-
-                        // Set socket options for connection timeout
-                        zmqSocket.Options.Linger = TimeSpan.FromSeconds(1);
-
-                        // Connect to the STAMP device
-                        string endpoint = $"tcp://{STAMP_IP}:{STAMP_PORT}";
-                        zmqSocket.Connect(endpoint);
-
-                        // Connection successful
-                        success = true;
-                    }
-                    catch (Exception ex)
-                    {
-                        // Connection failed
-                        success = false;
-
-                        // Clean up socket if it was created
-                        if (zmqSocket != null)
-                        {
-                            zmqSocket.Dispose();
-                            zmqSocket = null;
-                        }
-                    }
-                });
+                success = await stampCommunicator!.Connect();
             }
             catch (Exception ex)
             {
@@ -60,22 +29,8 @@ namespace STAMP_GUI
             }
             finally
             {
-                // Update UI back on UI thread
-                if (InvokeRequired)
-                {
-                    Invoke(new Action(() =>
-                    {
-                        buttonConnectToSTAMP.Enabled = true;
-                        buttonConnectToSTAMP.Text = success ? "Connected" : "Connect to STAMP";
-                        ConnectedToStamp(success);
-                    }));
-                }
-                else
-                {
-                    buttonConnectToSTAMP.Enabled = true;
-                    buttonConnectToSTAMP.Text = success ? "Connected" : "Connect to STAMP";
-                    ConnectedToStamp(success);
-                }
+                buttonConnectToSTAMP.Enabled = true;
+                ConnectedToStamp(success);
             }
         }
 
@@ -83,13 +38,13 @@ namespace STAMP_GUI
         {
             if (success)
             {
-                MessageBox.Show("Successfully connected to STAMP device!", "Connection Success",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                labelSTAMP.BackColor = Color.GreenYellow;
+                labelSTAMP.Text = "Connected";
             }
             else
             {
-                MessageBox.Show($"Failed to connect to STAMP device at {STAMP_IP}:{STAMP_PORT}",
-                    "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                labelSTAMP.BackColor = Color.PaleVioletRed;
+                labelSTAMP.Text = "Disconnected";
             }
         }
 
@@ -97,11 +52,11 @@ namespace STAMP_GUI
         {
             if (disposing)
             {
-                // Clean up ZeroMQ socket
-                if (zmqSocket != null)
+                // Clean up STAMP communicator
+                if (stampCommunicator != null)
                 {
-                    zmqSocket.Dispose();
-                    zmqSocket = null;
+                    stampCommunicator.Dispose();
+                    stampCommunicator = null;
                 }
 
                 if (components != null)
@@ -110,6 +65,28 @@ namespace STAMP_GUI
                 }
             }
             base.Dispose(disposing);
+        }
+
+        private void buttonStartSTAMP_Click(object sender, EventArgs e)
+        {
+            stampCommunicator.SendControlCommand(GUIApp.Comm.Command.Start);
+        }
+
+        private void buttonStopSTAMP_Click(object sender, EventArgs e)
+        {
+            stampCommunicator.SendControlCommand(GUIApp.Comm.Command.Stop);
+        }
+
+        private void buttonApplyStampStatus_Click(object sender, EventArgs e)
+        {
+            if (radioSTAMP_Status_init.Checked)
+                stampCommunicator.SendSubsystemStatusMessage(GUIApp.Comm.SystemStatus.StatusInitializing);
+            else if (radioSTAMP_Status_Normal.Checked)
+                stampCommunicator.SendSubsystemStatusMessage(GUIApp.Comm.SystemStatus.StatusNormal);
+            else if (radioSTAMP_Status_Degraded.Checked)
+                stampCommunicator.SendSubsystemStatusMessage(GUIApp.Comm.SystemStatus.StatusDegraded);
+            else if (radioSTAMP_Status_Inoperable.Checked)
+                stampCommunicator.SendSubsystemStatusMessage(GUIApp.Comm.SystemStatus.StatusInoprable);
         }
     }
 }

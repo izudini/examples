@@ -78,15 +78,16 @@ const char descriptor_table_protodef_Configure_5fSTAMP_5fStatus_2eproto[] ABSL_A
     protodesc_cold) = {
     "\n\034Configure_STAMP_Status.proto\022\013GUIApp.C"
     "omm\"C\n\026Configure_STAMP_Status\022)\n\006status\030"
-    "\001 \001(\0162\031.GUIApp.Comm.SystemStatus*1\n\014Syst"
-    "emStatus\022\020\n\014Initializing\020\000\022\017\n\013Operationa"
-    "l\020\001b\006proto3"
+    "\001 \001(\0162\031.GUIApp.Comm.SystemStatus*e\n\014Syst"
+    "emStatus\022\027\n\023Status_Initializing\020\000\022\021\n\rSta"
+    "tus_Normal\020\001\022\023\n\017Status_Degraded\020\002\022\024\n\020Sta"
+    "tus_Inoprable\020\003b\006proto3"
 };
 static ::absl::once_flag descriptor_table_Configure_5fSTAMP_5fStatus_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_Configure_5fSTAMP_5fStatus_2eproto = {
     false,
     false,
-    171,
+    223,
     descriptor_table_protodef_Configure_5fSTAMP_5fStatus_2eproto,
     "Configure_STAMP_Status.proto",
     &descriptor_table_Configure_5fSTAMP_5fStatus_2eproto_once,
@@ -106,7 +107,7 @@ const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL SystemStatus_descript
   return file_level_enum_descriptors_Configure_5fSTAMP_5fStatus_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t SystemStatus_internal_data_[] = {
-    131072u, 0u, };
+    262144u, 0u, };
 // ===================================================================
 
 class Configure_STAMP_Status::_Internal {

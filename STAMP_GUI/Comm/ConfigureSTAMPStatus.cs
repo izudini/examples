@@ -26,8 +26,9 @@ namespace GUIApp.Comm {
           string.Concat(
             "ChxDb25maWd1cmVfU1RBTVBfU3RhdHVzLnByb3RvEgtHVUlBcHAuQ29tbSJD",
             "ChZDb25maWd1cmVfU1RBTVBfU3RhdHVzEikKBnN0YXR1cxgBIAEoDjIZLkdV",
-            "SUFwcC5Db21tLlN5c3RlbVN0YXR1cyoxCgxTeXN0ZW1TdGF0dXMSEAoMSW5p",
-            "dGlhbGl6aW5nEAASDwoLT3BlcmF0aW9uYWwQAWIGcHJvdG8z"));
+            "SUFwcC5Db21tLlN5c3RlbVN0YXR1cyplCgxTeXN0ZW1TdGF0dXMSFwoTU3Rh",
+            "dHVzX0luaXRpYWxpemluZxAAEhEKDVN0YXR1c19Ob3JtYWwQARITCg9TdGF0",
+            "dXNfRGVncmFkZWQQAhIUChBTdGF0dXNfSW5vcHJhYmxlEANiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::GUIApp.Comm.SystemStatus), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -39,8 +40,10 @@ namespace GUIApp.Comm {
   }
   #region Enums
   public enum SystemStatus {
-    [pbr::OriginalName("Initializing")] Initializing = 0,
-    [pbr::OriginalName("Operational")] Operational = 1,
+    [pbr::OriginalName("Status_Initializing")] StatusInitializing = 0,
+    [pbr::OriginalName("Status_Normal")] StatusNormal = 1,
+    [pbr::OriginalName("Status_Degraded")] StatusDegraded = 2,
+    [pbr::OriginalName("Status_Inoprable")] StatusInoprable = 3,
   }
 
   #endregion
@@ -93,7 +96,7 @@ namespace GUIApp.Comm {
 
     /// <summary>Field number for the "status" field.</summary>
     public const int StatusFieldNumber = 1;
-    private global::GUIApp.Comm.SystemStatus status_ = global::GUIApp.Comm.SystemStatus.Initializing;
+    private global::GUIApp.Comm.SystemStatus status_ = global::GUIApp.Comm.SystemStatus.StatusInitializing;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::GUIApp.Comm.SystemStatus Status {
@@ -126,7 +129,7 @@ namespace GUIApp.Comm {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Status != global::GUIApp.Comm.SystemStatus.Initializing) hash ^= Status.GetHashCode();
+      if (Status != global::GUIApp.Comm.SystemStatus.StatusInitializing) hash ^= Status.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -145,7 +148,7 @@ namespace GUIApp.Comm {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Status != global::GUIApp.Comm.SystemStatus.Initializing) {
+      if (Status != global::GUIApp.Comm.SystemStatus.StatusInitializing) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Status);
       }
@@ -159,7 +162,7 @@ namespace GUIApp.Comm {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Status != global::GUIApp.Comm.SystemStatus.Initializing) {
+      if (Status != global::GUIApp.Comm.SystemStatus.StatusInitializing) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Status);
       }
@@ -173,7 +176,7 @@ namespace GUIApp.Comm {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Status != global::GUIApp.Comm.SystemStatus.Initializing) {
+      if (Status != global::GUIApp.Comm.SystemStatus.StatusInitializing) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Status);
       }
       if (_unknownFields != null) {
@@ -188,7 +191,7 @@ namespace GUIApp.Comm {
       if (other == null) {
         return;
       }
-      if (other.Status != global::GUIApp.Comm.SystemStatus.Initializing) {
+      if (other.Status != global::GUIApp.Comm.SystemStatus.StatusInitializing) {
         Status = other.Status;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
