@@ -30,12 +30,12 @@
             radioSTAMP_Status_init = new RadioButton();
             labelSTAMP = new Label();
             groupAIECS = new GroupBox();
-            label1 = new Label();
+            buttonSendZeroizeRequest = new Button();
+            buttonAIECS_RequestBIT = new Button();
             buttonStopAIECS = new Button();
             buttonStartAIECS = new Button();
             buttonConnectAIECS = new Button();
-            buttonAIECS_RequestBIT = new Button();
-            buttonSendZeroizeRequest = new Button();
+            label1 = new Label();
             groupSTAMP.SuspendLayout();
             groupSTAMP_Status.SuspendLayout();
             groupAIECS.SuspendLayout();
@@ -180,23 +180,30 @@
             groupAIECS.Controls.Add(buttonStartAIECS);
             groupAIECS.Controls.Add(buttonConnectAIECS);
             groupAIECS.Controls.Add(label1);
-            groupAIECS.Location = new Point(314, 22);
+            groupAIECS.Location = new Point(314, 21);
             groupAIECS.Name = "groupAIECS";
             groupAIECS.Size = new Size(288, 548);
             groupAIECS.TabIndex = 2;
             groupAIECS.TabStop = false;
             groupAIECS.Text = "AIECS";
             // 
-            // label1
+            // buttonSendZeroizeRequest
             // 
-            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            label1.BackColor = Color.Gray;
-            label1.Location = new Point(6, 529);
-            label1.Name = "label1";
-            label1.Size = new Size(276, 16);
-            label1.TabIndex = 2;
-            label1.Text = "Disconnected";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
+            buttonSendZeroizeRequest.Location = new Point(19, 180);
+            buttonSendZeroizeRequest.Name = "buttonSendZeroizeRequest";
+            buttonSendZeroizeRequest.Size = new Size(242, 32);
+            buttonSendZeroizeRequest.TabIndex = 9;
+            buttonSendZeroizeRequest.Text = "Send ZEROIZE Request";
+            buttonSendZeroizeRequest.UseVisualStyleBackColor = true;
+            // 
+            // buttonAIECS_RequestBIT
+            // 
+            buttonAIECS_RequestBIT.Location = new Point(19, 142);
+            buttonAIECS_RequestBIT.Name = "buttonAIECS_RequestBIT";
+            buttonAIECS_RequestBIT.Size = new Size(242, 32);
+            buttonAIECS_RequestBIT.TabIndex = 5;
+            buttonAIECS_RequestBIT.Text = "Send BIT Request";
+            buttonAIECS_RequestBIT.UseVisualStyleBackColor = true;
             // 
             // buttonStopAIECS
             // 
@@ -225,23 +232,16 @@
             buttonConnectAIECS.Text = "Connect";
             buttonConnectAIECS.UseVisualStyleBackColor = true;
             // 
-            // buttonAIECS_RequestBIT
+            // label1
             // 
-            buttonAIECS_RequestBIT.Location = new Point(19, 142);
-            buttonAIECS_RequestBIT.Name = "buttonAIECS_RequestBIT";
-            buttonAIECS_RequestBIT.Size = new Size(242, 32);
-            buttonAIECS_RequestBIT.TabIndex = 5;
-            buttonAIECS_RequestBIT.Text = "Send BIT Request";
-            buttonAIECS_RequestBIT.UseVisualStyleBackColor = true;
-            // 
-            // buttonSendZeroizeRequest
-            // 
-            buttonSendZeroizeRequest.Location = new Point(19, 180);
-            buttonSendZeroizeRequest.Name = "buttonSendZeroizeRequest";
-            buttonSendZeroizeRequest.Size = new Size(242, 32);
-            buttonSendZeroizeRequest.TabIndex = 9;
-            buttonSendZeroizeRequest.Text = "Send ZEROIZE Request";
-            buttonSendZeroizeRequest.UseVisualStyleBackColor = true;
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label1.BackColor = Color.Gray;
+            label1.Location = new Point(6, 529);
+            label1.Name = "label1";
+            label1.Size = new Size(276, 16);
+            label1.TabIndex = 2;
+            label1.Text = "Disconnected";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
