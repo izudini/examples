@@ -10,7 +10,8 @@
       "Bash(apt-get install:*)",
       "Bash(sudo apt-get:*)",
       "Bash(sudo apt-get install:*)",
-      "Bash(python -m pip:*)"
+      "Bash(python -m pip:*)",
+      "Bash(mv:*)"
     ],
     "deny": [],
     "ask": []

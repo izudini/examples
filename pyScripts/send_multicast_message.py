@@ -21,7 +21,7 @@ except ImportError:
     sys.exit(1)
 
 # Add pyProto to path to import the compiled proto
-proto_path = Path(__file__).parent / "pyProto"
+proto_path = Path(__file__).parent.parent / "pyProto"
 sys.path.insert(0, str(proto_path))
 
 try:
